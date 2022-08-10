@@ -3,6 +3,7 @@ const app = express();
 const mysql = require('mysql2');
 const myconnection = require('express-myconnection');
 const cors = require('cors')
+const routes = require('./routes')
 
 app.set('port', process.env.PORT || 9000);
 
@@ -17,7 +18,7 @@ const dbOptions = {
     database: 'pokemon',
 }
 //middlewares--------------------------
-app.use(myconn(mysql, dbOptions, 'single'))
+app.use(myconnection(mysql, dbOptions, 'single'))
 app.use(express.json())
 app.use(cors())
 //routes--------------------------------
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
     res.send('working')
 })
 
-app.use('/api', routes)
+app.use('/', routes)
 //server running-------------------------
 app.listen(app.get('port'), () => {
     console.log('server running on port', app.get('port'))

@@ -74,6 +74,20 @@ routes.delete('/delete/:id', (req, res) => {
     })
 })
 
+//alteração de cartas
+
+routes.put('/update/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('UPDATE card_combinada set ? WHERE id= ?', [req.body, req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(`card with the  id ${[req.params.id]} was updated`)
+
+        })
+    })
+})
 
 
 

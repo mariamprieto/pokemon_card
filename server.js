@@ -23,6 +23,7 @@ app.use(myconnection(mysql, dbOptions, 'single'))
 app.use(express.json())
 app.use(cors())
 app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
 //routes--------------------------------
 app.get('/', (req, res) => {
     res.send('working')

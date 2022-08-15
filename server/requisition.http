@@ -4,16 +4,15 @@ Content-Type: application/json
 
 [{
     "nome_card": "bulbasaur",
-     "attribute": {
+      "attribute": {
       "hp": 45,
       "attack": 49,
       "defense": 49,
       "special-attack": 65,
       "special-defense": 65,
-      "speed": 45
-     }
-    }]
-  
+      "speed": 45}
+    }
+]
 
 ###
 GET http://localhost:9000/api/lista HTTP/1.1

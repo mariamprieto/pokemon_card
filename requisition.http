@@ -1,0 +1,31 @@
+###
+POST http://localhost:9000/api/cadastro HTTP/1.1
+Content-Type: application/json
+
+[{
+    "nome_card": "bulbasaur",
+     "attribute": {
+      "hp": 45,
+      "attack": 49,
+      "defense": 49,
+      "special-attack": 65,
+      "special-defense": 65,
+      "speed": 45
+    }
+  }]
+
+###
+POST http://localhost:9000/api/cadastro2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome_card": "bulbasaur",
+    "attribute": {
+      "hp": 45,
+      "attack": 49,
+      "defense": 49,
+      "special-attack": 65,
+      "special-defense": 65,
+      "speed": 45
+    }
+  }

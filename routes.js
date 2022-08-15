@@ -32,28 +32,15 @@ routes.post('/cadastro', (req, res) => {
     })
 })
 
-//cadastra uma carta
-routes.post('/cadastro2', (req, res) => {
-    req.getConnection((err, conn) => {
-        if (err) return res.send(err)
-
-        conn.query('INSERT INTO card_combinada set ? ?', [req.body], (err, rows) => {
-            if (err) return res.send(err)
-
-            res.send('cadastro added')
-
-        })
-    })
-})
 //consulta uma carta
 routes.get('/get/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('SELECT * FROM carta_combinada WHERE id= ?', [req.params.id], (err, rows) => {
+        conn.query('SELECT * FROM card_combinada WHERE id= ?', [req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
-            res.send('carta delete')
+            res.send(rows)
 
         })
     })
@@ -64,7 +51,7 @@ routes.get('/get/:id', (req, res) => {
 routes.get('/lista', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
-        conn.query('SELECT * FROM carta_combinada', (err, rows) => {
+        conn.query('SELECT * FROM card_combinada', (err, rows) => {
             if (err) return res.send(err)
             res.send(rows)
 
@@ -78,10 +65,10 @@ routes.delete('/delete/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('DELETE FROM carta_combinada WHERE id= ?', [req.params.id], (err, rows) => {
+        conn.query('DELETE FROM card_combinada WHERE id= ?', [req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
-            res.send('carta delete')
+            res.send(`card with the  id ${[req.params.id]} was deleted`)
 
         })
     })

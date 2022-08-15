@@ -22,7 +22,7 @@ routes.post('/cadastro', (req, res) => {
 
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
-        conn.query('INSERT INTO card_combinada set ?', { nome_card: nome_card, attribute: attribute }, (err, rows) => {
+        conn.query('INSERT INTO card set ?', { nome_card: nome_card, attribute: attribute }, (err, rows) => {
             if (err) return res.send(err)
 
             res.send('cadastro added')
@@ -37,7 +37,7 @@ routes.get('/get/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('SELECT * FROM card_combinada WHERE id= ?', [req.params.id], (err, rows) => {
+        conn.query('SELECT * FROM card WHERE id= ?', [req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
             res.send(rows)
@@ -51,7 +51,7 @@ routes.get('/get/:id', (req, res) => {
 routes.get('/lista', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
-        conn.query('SELECT * FROM card_combinada', (err, rows) => {
+        conn.query('SELECT * FROM card', (err, rows) => {
             if (err) return res.send(err)
             res.send(rows)
 
@@ -65,7 +65,7 @@ routes.delete('/delete/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('DELETE FROM card_combinada WHERE id= ?', [req.params.id], (err, rows) => {
+        conn.query('DELETE FROM card WHERE id= ?', [req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
             res.send(`card with the  id ${[req.params.id]} was deleted`)
@@ -80,7 +80,7 @@ routes.put('/update/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('UPDATE card_combinada set ? WHERE id= ?', [req.body, req.params.id], (err, rows) => {
+        conn.query('UPDATE card set ? WHERE id= ?', [req.body, req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
             res.send(`card with the  id ${[req.params.id]} was updated`)

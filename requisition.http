@@ -30,10 +30,10 @@ PUT http://localhost:9000/api/update/4 HTTP/1.1
 Content-Type: application/json
 
 {
-    "nome_card":"charmander"
+     "nome_card": "charmander"
 }
 
 
 ###
-DELETE http://localhost:9000/api/delete/3 HTTP/1.1
+DELETE http://localhost:9000/api/delete/4 HTTP/1.1
 Content-Type: application/json

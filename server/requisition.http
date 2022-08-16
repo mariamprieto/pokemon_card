@@ -39,11 +39,6 @@ Content-Type: application/json
 
 
 
-
-
-
-
-
 //JSON//
 ###
 POST http://localhost:9000/api/cadastro HTTP/1.1
@@ -70,7 +65,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:9000/api/get/3 HTTP/1.1
+GET http://localhost:9000/api/get/10 HTTP/1.1
 Content-Type: application/json
 
 ###
@@ -78,10 +73,19 @@ PUT http://localhost:9000/api/update/3 HTTP/1.1
 Content-Type: application/json
 
 {
-     "nome_card": "picachu"
+   
+    "nome_card": "bulbasaur",
+      "attribute": {
+      "hp": 10,
+      "attack": 5,
+      "defense": 7,
+      "special_attack": 6,
+      "special_defense": 10,
+      "speed": 45}
+
 }
 
 
 ###
-DELETE http://localhost:9000/api/delete/6 HTTP/1.1
+DELETE http://localhost:9000/api/delete/3 HTTP/1.1
 Content-Type: application/json

@@ -82,15 +82,15 @@ const ListCard = ({ cards, setcardUpdated, card, setCard }) => {
                     <td>{card.defense}</td>
                     <td>{card.speed}</td>
                     <td>{card.special_attack}</td>
-                    <td>{card.special - defense}</td>
+                    <td>{card.special_defense}</td>
                     <td>
                         <div className='mb-3'>
-                         <button className='btn btn-danger'>Delete</button>
+                                <button onClick={() => handleDelete(card.id)} className='btn btn-danger'>Delete</button>
                         </div>
                     </td>
                     <td>
                         <div className='mb-3'>
-                            <button className='btn btn-dark'>Update</button>
+                                <button onClick={() => handleUpdate(card.id)} className='btn btn-dark'>Update</button>
                         </div>
                     </td>
                 </tr>

@@ -1,7 +1,83 @@
 const express = require('express')
 const routes = express.Router()
 
-//cadastra uma carta
+//cadastra uma carta normal
+
+routes.post('/cadastrar', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('INSERT INTO card_normal set ?', [req.body], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send('card added')
+
+        })
+    })
+})
+
+
+
+//consulta uma carta_normal
+routes.get('/getCard/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM card_normal WHERE id= ?', [req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+
+        })
+    })
+})
+
+
+//consulta lista do carta_normal
+routes.get('/listCard', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+        conn.query('SELECT * FROM card_normal', (err, rows) => {
+            if (err) return res.send(err)
+            res.send(rows)
+
+        })
+    })
+})
+
+//delete uma carta_normal
+
+routes.delete('/deleteCard/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('DELETE FROM card_normal WHERE id= ?', [req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(`card with the  id ${[req.params.id]} was deleted`)
+
+        })
+    })
+})
+
+//alteração de cartas_normal
+
+routes.put('/updateCard/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('UPDATE card_normal set ? WHERE id= ?', [req.body, req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(`card with the  id ${[req.params.id]} was updated`)
+
+        })
+    })
+})
+
+
+////////////////----------Probando con JSON--------------//////////////
+
 routes.post('/cadastro', (req, res) => {
 
     //name
@@ -18,7 +94,7 @@ routes.post('/cadastro', (req, res) => {
 
     //JSON attribute
 
-    attributo = JSON.stringify(attribute)
+    attribute = JSON.stringify(attribute)
 
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
@@ -31,6 +107,7 @@ routes.post('/cadastro', (req, res) => {
 
     })
 })
+
 
 //consulta uma carta
 routes.get('/get/:id', (req, res) => {
@@ -88,8 +165,6 @@ routes.put('/update/:id', (req, res) => {
         })
     })
 })
-
-
 
 
 

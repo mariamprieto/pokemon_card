@@ -2,7 +2,8 @@ const express = require('express')
 const routes = express.Router()
 
 
-//tabelas com coluna normal//
+//tabelas com coluna normal
+
 //cadastra uma carta normal
 
 routes.post('/cadastrar', (req, res) => {
@@ -76,6 +77,12 @@ routes.put('/updateCard/:id', (req, res) => {
         })
     })
 })
+
+//comparacaoes
+
+
+
+
 
 
 ////////////////----------tabelas  com coluna JSON--------------//////////////

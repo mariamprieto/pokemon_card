@@ -13,7 +13,7 @@ const Cadastro_Card = ({card, setCard}) => {
 
     }
 
-    let { nome, hp,attack,defense, speed, specialA, specialD } = card
+    let { nome_card, hp,attack,defense, speed, special_attack, special_defense } = card
 
     const onSubmit = () => {
         //validacion de los inputs
@@ -21,9 +21,9 @@ const Cadastro_Card = ({card, setCard}) => {
         attack = parseInt(attack)
         defense = parseInt(defense)
         speed = parseInt(speed)
-        specialA = parseInt(specialA)
-        specialD = parseInt(specialD)
-        if (nome === '' || hp <= 0 || attack <= 0 || defense <= 0 || speed <= 0 || specialA <= 0 || specialD <= 0 ) {
+        special_attack = parseInt(special_attack)
+        special_defense = parseInt(special_defense)
+        if (nome_card=== '' || hp <= 0 || attack <= 0 || defense <= 0 || speed <= 0 || special_attack <= 0 || special_defense <= 0 ) {
             alert('Todas as informações são obrigatórias')
             return
         }
@@ -50,13 +50,13 @@ const Cadastro_Card = ({card, setCard}) => {
 
         //reiniciar el state
         setCard({
-            nome: '',
+            nome_card: '',
             hp: 0,
-            attack:0,
+            attack: 0,
             defense: 0,
-            speed: 0,
-            specialA: 0,
-            specialD:0
+            special_attack: 0,
+            special_defense: 0,
+            speed: 0
 
         })
 
@@ -66,7 +66,7 @@ const Cadastro_Card = ({card, setCard}) => {
         <form onSubmit={onSubmit}>
             <div className='mb-4'>
                 <label htmlFor='nomeCard' className='form-label'>Nome do Carta</label>
-                <input value={nome} name='nome' onChange={changeHandler} type='text' id='nomeCard' className='form-control' />
+                <input value={nome_card} name='nome_card' onChange={changeHandler} type='text' id='nomeCard' className='form-control' />
             </div>
             <div className='mb-4'>
                 <label htmlFor='hpValue' className='form-label'>hp</label>
@@ -86,11 +86,11 @@ const Cadastro_Card = ({card, setCard}) => {
             </div>
             <div className='mb-4'>
                 <label htmlFor='specialAttack' className='form-label'>special attack</label>
-                <input value={specialA} name='specialA' onChange={changeHandler} type='number' id='specialAttack' className='form-control' />
+                <input value={special_attack} name='special_attack' onChange={changeHandler} type='number' id='specialAttack' className='form-control' />
             </div>
             <div className='mb-4'>
                 <label htmlFor='specialDefense' className='form-label'>special defense</label>
-                <input value={specialD} name='specialD' onChange={changeHandler} type='number' id='specialDefense' className='form-control' />
+                <input value={special_defense} name='special_defense' onChange={changeHandler} type='number' id='specialDefense' className='form-control' />
             </div>
 
            

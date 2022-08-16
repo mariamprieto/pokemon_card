@@ -7,7 +7,7 @@ import ListCard from './Components/List_cards';
 function App() {
 
 
-  //Conexion bd courses
+  //Conexion bd card
   //---Get card
   const [ cards, setCards] = useState([])
   const [cardUpdated, setcardUpdated] = useState(false);
@@ -15,13 +15,13 @@ function App() {
 
   const [ card, setCard] = useState({
 
-    nome: '',
+    nome_card: '',
     hp: 0,
     attack: 0,
     defense: 0,
-    speed: 0,
-    specialA: 0,
-    specialD: 0
+    special_attack: 0,
+    special_defense: 0,
+    speed: 0
 
   });
 

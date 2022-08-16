@@ -3,8 +3,59 @@ import React from 'react'
 
 
 
-const ListCard = () => {
+const ListCard = ({ cards, setcardUpdated, card, setCard }) => {
 
+    const handleDelete = id => {
+
+        const requestInit = {
+            method: 'DELETE',
+        }
+
+        fetch('http://localhost:9000/api/deleteCard/' + id, requestInit)
+            .then(res => res.text())
+            .then(res => console.log(res))
+
+        setcardUpdated(true)
+    }
+
+    let { nome_card, hp, attack, defense, speed, special_attack, special_defense } = card
+    const handleUpdate = id => {
+
+
+        //validacion de los inputs
+        hp = parseInt(hp)
+        attack = parseInt(attack)
+        defense = parseInt(defense)
+        speed = parseInt(speed)
+        special_attack = parseInt(special_attack)
+        special_defense = parseInt(special_defense)
+        if (nome_card === '' || hp <= 0 || attack <= 0 || defense <= 0 || speed <= 0 || special_attack <= 0 || special_defense <= 0) {
+            alert('Todas as informações são obrigatórias')
+            return
+        }
+        const requestInit = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(card)
+        }
+
+        fetch('http://localhost:9000/api/updateCard/' + id, requestInit)
+            .then(res => res.text())
+            .then(res => console.log(res))
+
+        //reiniciar el state
+        setCard({
+            nome_card: '',
+            hp: 0,
+            attack: 0,
+            defense: 0,
+            special_attack: 0,
+            special_defense: 0,
+            speed: 0
+        })
+
+        setcardUpdated(true)
+    }
 
 
     return (
@@ -22,15 +73,16 @@ const ListCard = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr >
-                    <td>ID Card</td>
-                    <td>Nome do Card</td>
-                    <td>hp</td>
-                    <td>attack</td>
-                    <td>defense</td>
-                    <td>speed</td>
-                    <td>special_attack</td>
-                    <td>special-defense</td>
+                {cards.map(card => (
+                    <tr key={card.id} >
+                    <td>{card.id}</td>
+                    <td>{card.nome_card}</td>
+                    <td>{card.hp}</td>
+                    <td>{card.attack}</td>
+                    <td>{card.defense}</td>
+                    <td>{card.speed}</td>
+                    <td>{card.special_attack}</td>
+                    <td>{card.special - defense}</td>
                     <td>
                         <div className='mb-3'>
                          <button className='btn btn-danger'>Delete</button>
@@ -42,7 +94,7 @@ const ListCard = () => {
                         </div>
                     </td>
                 </tr>
-
+                ))}
             </tbody>
         </table>
     );

@@ -92,9 +92,9 @@ routes.post('/cadastro', (req, res) => {
     const { special_defense } = req.body.attribute
     const { speed } = req.body.attribute
 
-    console.log(hp,attack,defense)
+    
     let attribute = { hp: hp, attack: attack, defense: defense, special_attack: special_attack, special_defesnse: special_defense, speed: speed }
-    console.log(attribute, "tipo de variable: ", typeof attribute)
+    
     //JSON attribute
 
     attribute = JSON.stringify(attribute)
@@ -168,7 +168,6 @@ routes.put('/update/:id', (req, res) => {
     const { speed } = req.body.attribute
 
   
-    console.log(req.body)
     let attribute = { hp: hp, attack: attack, defense: defense, special_attack: special_attack, special_defesnse: special_defense, speed: speed }
     
     //JSON attribute

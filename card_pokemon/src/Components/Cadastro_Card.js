@@ -34,7 +34,7 @@ const Cadastro_Card = ({card, setCard}) => {
             body: JSON.stringify(card)
         }
 
-        fetch('http://localhost:9000/api/cadastro', requestInit)
+        fetch('http://localhost:9000/api/cadastrar', requestInit)
             .then(res => res.text())
             .then((res) => {
 
@@ -65,7 +65,7 @@ const Cadastro_Card = ({card, setCard}) => {
     return (
         <form onSubmit={onSubmit}>
             <div className='mb-4'>
-                <label htmlFor='nomeCard' className='form-label'>Nome do Card</label>
+                <label htmlFor='nomeCard' className='form-label'>Nome do Carta</label>
                 <input value={nome} name='nome' onChange={changeHandler} type='text' id='nomeCard' className='form-control' />
             </div>
             <div className='mb-4'>

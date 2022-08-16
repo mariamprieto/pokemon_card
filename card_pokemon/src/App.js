@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     const getCard = () => {
-      fetch(' http://localhost:9000/api/listahttp://localhost:9000/api')
+      fetch('http://localhost:9000/api/listCard')
         .then(res => res.json())
         .then(res => setCards(res))
     }

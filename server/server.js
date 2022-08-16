@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const myconnection = require('express-myconnection');
 const cors = require('cors')
 const routes = require('./routes')
+
 const bodyParser=require('body-parser')
 
 app.set('port', process.env.PORT || 9000);
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', routes)
+
 //server running-------------------------
 app.listen(app.get('port'), () => {
     console.log('server running on port', app.get('port'))

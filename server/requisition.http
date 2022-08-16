@@ -1,18 +1,67 @@
 ###
+POST http://localhost:9000/api/cadastrar HTTP/1.1
+Content-Type: application/json
+
+{
+  "nome_card": "charmander",
+  "hp": "39",
+  "attack": "52",
+  "defense": "43",
+  "special_attack": "60",
+  "special_defense": "50",
+  "speed": "65"
+ }
+ 
+
+###
+GET http://localhost:9000/api/listCard HTTP/1.1
+Content-Type: application/json
+
+
+
+###
+GET http://localhost:9000/api/getCard/3 HTTP/1.1
+Content-Type: application/json
+
+###
+PUT http://localhost:9000/api/updateCard/3 HTTP/1.1
+Content-Type: application/json
+
+{
+     "hp": "45"
+}
+
+
+###
+DELETE http://localhost:9000/api/deleteCard/4 HTTP/1.1
+Content-Type: application/json
+
+
+
+
+
+
+
+
+
+//JSON
+###
 POST http://localhost:9000/api/cadastro HTTP/1.1
 Content-Type: application/json
 
-[{
+{
     "nome_card": "bulbasaur",
       "attribute": {
       "hp": 45,
       "attack": 49,
       "defense": 49,
-      "special-attack": 65,
-      "special-defense": 65,
+      "special_attack": 65,
+      "special_defense": 65,
       "speed": 45}
+      
     }
-]
+
+
 
 ###
 GET http://localhost:9000/api/lista HTTP/1.1
@@ -21,18 +70,18 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:9000/api/get/4 HTTP/1.1
+GET http://localhost:9000/api/get/3 HTTP/1.1
 Content-Type: application/json
 
 ###
-PUT http://localhost:9000/api/update/4 HTTP/1.1
+PUT http://localhost:9000/api/update/3 HTTP/1.1
 Content-Type: application/json
 
 {
-     "nome_card": "charmander"
+     "nome_card": "picachu"
 }
 
 
 ###
-DELETE http://localhost:9000/api/delete/4 HTTP/1.1
+DELETE http://localhost:9000/api/delete/6 HTTP/1.1
 Content-Type: application/json

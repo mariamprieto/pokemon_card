@@ -1,6 +1,8 @@
 const express = require('express')
 const routes = express.Router()
 
+
+//tabelas com coluna normal//
 //cadastra uma carta normal
 
 routes.post('/cadastrar', (req, res) => {
@@ -76,26 +78,27 @@ routes.put('/updateCard/:id', (req, res) => {
 })
 
 
-////////////////----------Probando con JSON--------------//////////////
+////////////////----------tabelas  com coluna JSON--------------//////////////
 
 routes.post('/cadastro', (req, res) => {
 
     //name
     const { nome_card } = req.body
     //attributes
-    const { hp } = req.body
-    const { attack } = req.body
-    const { defense } = req.body
-    const { special_attack } = req.body
-    const { special_defense } = req.body
-    const { speed } = req.body
+    const { hp } = req.body.attribute
+    const { attack } = req.body.attribute
+    const { defense } = req.body.attribute
+    const { special_attack } = req.body.attribute
+    const { special_defense } = req.body.attribute
+    const { speed } = req.body.attribute
 
-    let attribute = { "hp": hp, "attack": attack, "defense": defense, "special_attack": special_attack, "special_defesnse": special_defense, "speed": speed }
-
+    console.log(hp,attack,defense)
+    let attribute = { hp: hp, attack: attack, defense: defense, special_attack: special_attack, special_defesnse: special_defense, speed: speed }
+    console.log(attribute, "tipo de variable: ", typeof attribute)
     //JSON attribute
 
     attribute = JSON.stringify(attribute)
-
+      
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
         conn.query('INSERT INTO card set ?', { nome_card: nome_card, attribute: attribute }, (err, rows) => {
@@ -154,10 +157,27 @@ routes.delete('/delete/:id', (req, res) => {
 //alteração de cartas
 
 routes.put('/update/:id', (req, res) => {
+    //name
+    const { nome_card } = req.body
+    //attributes
+    const { hp } = req.body.attribute
+    const { attack } = req.body.attribute
+    const { defense } = req.body.attribute
+    const { special_attack } = req.body.attribute
+    const { special_defense } = req.body.attribute
+    const { speed } = req.body.attribute
+
+  
+    console.log(req.body)
+    let attribute = { hp: hp, attack: attack, defense: defense, special_attack: special_attack, special_defesnse: special_defense, speed: speed }
+    
+    //JSON attribute
+    attribute = JSON.stringify(attribute)
+
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('UPDATE card set ? WHERE id= ?', [req.body, req.params.id], (err, rows) => {
+        conn.query('UPDATE card set ? WHERE id= ?', [{ nome_card: nome_card, attribute: attribute }, req.params.id] ,(err, rows) => {
             if (err) return res.send(err)
 
             res.send(`card with the  id ${[req.params.id]} was updated`)

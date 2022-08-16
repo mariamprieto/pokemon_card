@@ -80,6 +80,37 @@ routes.put('/updateCard/:id', (req, res) => {
 
 //comparacaoes
 
+routes.get('/comparacoes/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+        let array = req.params.id.split(",")
+        console.log(array)
+
+        conn.query('SELECT * FROM card_normal WHERE id IN (?,?)', array, (err, rows) => {
+            let object = { details: {} }
+            
+            if (err) return res.send(err)
+            for (let name in rows[0]) {
+                if (name != 'id' && name != 'nome_card') {
+                    if(rows[0][name] > rows[1][name]) {
+                    object.details[name] = rows[0].id
+                } else {
+                    object.details[name] = rows[1].id
+                }
+            }
+            
+            }
+            
+            res.send({
+                "playerOneCard": array[0],
+                "playerTwoCard": array[1],
+               object
+            })
+        
+        
+        })
+    })
+})
 
 
 
@@ -99,13 +130,13 @@ routes.post('/cadastro', (req, res) => {
     const { special_defense } = req.body.attribute
     const { speed } = req.body.attribute
 
-    
+
     let attribute = { hp: hp, attack: attack, defense: defense, special_attack: special_attack, special_defesnse: special_defense, speed: speed }
-    
+
     //JSON attribute
 
     attribute = JSON.stringify(attribute)
-      
+
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
         conn.query('INSERT INTO card set ?', { nome_card: nome_card, attribute: attribute }, (err, rows) => {
@@ -174,16 +205,16 @@ routes.put('/update/:id', (req, res) => {
     const { special_defense } = req.body.attribute
     const { speed } = req.body.attribute
 
-  
+
     let attribute = { hp: hp, attack: attack, defense: defense, special_attack: special_attack, special_defesnse: special_defense, speed: speed }
-    
+
     //JSON attribute
     attribute = JSON.stringify(attribute)
 
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('UPDATE card set ? WHERE id= ?', [{ nome_card: nome_card, attribute: attribute }, req.params.id] ,(err, rows) => {
+        conn.query('UPDATE card set ? WHERE id= ?', [{ nome_card: nome_card, attribute: attribute }, req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
             res.send(`card with the  id ${[req.params.id]} was updated`)
